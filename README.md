@@ -36,11 +36,11 @@ This is a simple TODO application developed using **React Native** with **Expo**
 - **Node.js** and **npm** installed on your machine.
 - **Expo CLI** installed globally via npm:
 
+  ```bash
+  npm install -g expo-cli
+
 ## Screenshots
 
 https://drive.google.com/file/d/1B2rvBcHQ8eSMRA9cF22vvmBvqTya_Ii6/view?usp=sharing
 
 https://drive.google.com/file/d/1B3caMD8BDi3QqzuyudRm-6PejruWYWQ5/view?usp=sharing
-
-  ```bash
-  npm install -g expo-cli
