@@ -8,6 +8,7 @@ import Constants from 'expo-constants';
 
 
 import TodoScreen from './src/screens/TodoScreen';
+import HomeScreen from './src/screens/HomeScreen';
 
 // Initialize database
 async function initilizeDatabase(db){
@@ -41,9 +42,10 @@ export default function App() {
   return (
     <SQLite.SQLiteProvider databaseName='todoAppDB.db' onInit={initilizeDatabase}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='TodoApp'>
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen name='Home' component={HomeScreen}/>
           <Stack.Screen 
-            name='Todo' 
+            name='TodoScreen' 
             component={TodoScreen}
             options={{
               headerTitle: "Todo App",

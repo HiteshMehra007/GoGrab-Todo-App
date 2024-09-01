@@ -18,8 +18,6 @@ const TodoItem = ({item, getTodoListData}) => {
     } catch (error) {
       console.log("Error while Deleting Todo:\n", error);
     }
-    // const updatedTodoList = todoList.filter((todo) => todo.id !== id);
-    // setTodoList(updatedTodoList);
   }
 
   return (
