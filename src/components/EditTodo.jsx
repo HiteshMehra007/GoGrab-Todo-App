@@ -10,22 +10,20 @@ const EditTodo = ({ id, setIsEditing, oldTodoTitle, getTodoListData }) => {
 
     const updateTodo = async (id, newTitle) => {
         const result = await db.runAsync(`UPDATE Todo SET title = ? WHERE id = ?`, [newTitle, id]);
-        setIsEditing(false);
         return;
     }
-
+    
     const handleEditTodo = async () => {
         if(newTodoTitle.length <= 0){
             alert("Todo length must not be zero !");
             return;
         }
-
-        if(newTodoTitle === oldTodoTitle){
-            alert("Please Enter a new title !");
-            return;
+        
+        if(newTodoTitle !== oldTodoTitle){
+            await updateTodo(id, newTodoTitle);
         }
-
-        await updateTodo(id, newTodoTitle);
+        
+        setIsEditing(false);
         await getTodoListData();
     }
 
