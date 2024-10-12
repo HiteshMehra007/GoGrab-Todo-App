@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { useSQLiteContext } from 'expo-sqlite';
 import { IconButton } from 'react-native-paper';
+import { useGroup } from '../context/GroupProvider';
 
 import TodoItem from '../components/TodoItem';
 import TodoFallback from '../components/TodoFallback';
 
 const TodoScreen = ({route, navigation}) => {
-    const { groupId, refreshGroups } = route.params;
+    const { groupId } = route.params;
+    const { refreshGroups } = useGroup();
+
     const [todo, setTodo] = useState("");
     const [todoList, setTodoList] = useState([]);
     const [groupName, setGroupName] = useState('');

@@ -5,6 +5,7 @@ import * as SQLite from 'expo-sqlite';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Constants from 'expo-constants';
+import { GroupProvider } from './src/context/GroupProvider';
 
 
 import TodoScreen from './src/screens/TodoScreen';
@@ -41,6 +42,7 @@ export default function App() {
 
   return (
     <SQLite.SQLiteProvider databaseName='todoAppDB.db' onInit={initilizeDatabase}>
+      <GroupProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen name='Home' component={HomeScreen}/>
@@ -53,6 +55,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </GroupProvider>
     </SQLite.SQLiteProvider>
   );
 }

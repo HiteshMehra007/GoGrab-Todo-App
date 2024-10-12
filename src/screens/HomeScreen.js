@@ -2,19 +2,21 @@
 import { useSQLiteContext } from 'expo-sqlite';
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, TextInput, Button } from 'react-native';
-// import { getGroups, addGroup } from '../db';
+import { useGroup } from '../context/GroupProvider';
+
 import { List, FAB } from 'react-native-paper';
 
 export default function HomeScreen({ navigation }) {
-  const [groups, setGroups] = useState([]);
+  const { groups, getGroups, refreshGroups } = useGroup();
+  // const [groups, setGroups] = useState([]);
   const [groupName, setGroupName] = useState('');
 
   const db = useSQLiteContext();
 
-  const getGroups = async () => {
-    const result = await db.getAllAsync(`SELECT * FROM Groups`);
-    setGroups(result);
-  }
+  // const getGroups = async () => {
+  //   const result = await db.getAllAsync(`SELECT * FROM Groups`);
+  //   setGroups(result);
+  // }
 
   const addGroup = async (groupName) => {
     try {
@@ -36,9 +38,9 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  const refreshGroups = () => {
-    getGroups(); // Fetch latest data from database
-  }
+  // const refreshGroups = () => {
+  //   getGroups(); // Fetch latest data from database
+  // }
 
   return (
       <View style={{ flex: 1, padding: 20 }}>
@@ -56,7 +58,11 @@ export default function HomeScreen({ navigation }) {
         renderItem={({ item }) => (
           <List.Item
             title={item.name}
-            onPress={() => navigation.navigate('TodoScreen', {groupId: item.id, refreshGroups: refreshGroups} )}
+            // refreshGroups= {refreshGroups}
+            onPress={() => navigation.navigate('TodoScreen', {
+                groupId: item.id, 
+              } 
+            )}
           />
         )}
       />
