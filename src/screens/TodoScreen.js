@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'r
 import { useSQLiteContext } from 'expo-sqlite';
 import { IconButton } from 'react-native-paper';
 import { useGroup } from '../context/GroupProvider';
+import { Picker } from '@react-native-picker/picker';
 
 import TodoItem from '../components/TodoItem';
 import TodoFallback from '../components/TodoFallback';
@@ -86,7 +87,7 @@ const TodoScreen = ({route, navigation}) => {
     }
 
     return (
-        <View style={{ marginHorizontal: 16, marginTop: 40 }}>
+        <View style={{ flex: 1, marginHorizontal: 16, marginTop: 40 }}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={{ fontSize: 32, fontWeight: "bold" }}>{groupName}</Text>
                 <TouchableOpacity style={{paddingHorizontal: 4, paddingVertical: 2, backgroundColor: "#C80036", borderRadius: 8}}>
@@ -105,13 +106,13 @@ const TodoScreen = ({route, navigation}) => {
             </TouchableOpacity>
 
             {/* Render Todos */}
+            {todoList.length === 0 && <TodoFallback />}
             <FlatList
                 data={todoList}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => <TodoItem item={item} getTodoListData={getTodoListData} />}
                 contentContainerStyle={{ paddingBottom: 10 }}
             />
-            {todoList.length === 0 && <TodoFallback />}
         </View>
     );
 };
